@@ -1,10 +1,36 @@
-import React from "react";
-import { holdings } from "../data/data";
+import React, { useState, useEffect } from "react";
+import axios from "axios"
+// useState to store the data;
+
+// import { holdings } from "../data/data";
+// data from databasse
 
 function Holdings() {
+  const [allHoldings, setAllHoldings] = useState([]);
+
+  // useEffect(() => {
+  //   axios.get("http://localhost:3002/allHoldings")
+  //   .then((res) => { 
+  //     console.log(res.data);
+  //     setAllHoldings(res.data) // check kita apn, response ch thunder te json data area c 
+  //   });
+  // }, []); // [] taki ek war e call hoye, bar bar na call hunda rhe;/
+
+  useEffect(() => {
+    axios
+        .get("http://localhost:3002/allHoldings")
+        .then((res) => {
+            console.log("Holdings:", res.data);
+            setAllHoldings(res.data);
+        })
+        .catch((err) => {
+            console.log("Error fetching holdings:", err);
+        });
+  }, []);
+
   return (
     <>
-      <h3 className="title">Holdings ({holdings.length})</h3>
+      <h3 className="title">Holdings ({ allHoldings.length })</h3>
       <div className="order-table">
         <table>
           <thead>
@@ -21,7 +47,7 @@ function Holdings() {
           </thead>
 
           <tbody>
-            {holdings.map((stock, index) => {
+            { allHoldings.map((stock, index) => {
               const currVal = stock.price * stock.qty;
               const isProfit = currVal - stock.avg * stock.qty >= 0.0;
               const profClass = isProfit ? "profit" : "loss";

@@ -1,0 +1,19 @@
+npm init-y 
+npm i -D nodemon (dev di dependacy), imp haii!
+
+npm i express 
+body-parser (api to data fetch kern ch asaani vste)
+cors (for connections)
+dotenv (hide imp urls)
+
+mongoose 
+passport (for authentication!)
+passport-local 
+passport-local-mongoose
+
+npm start;
+
+bad auth: .env ch password de naal <> eh ni aaone
+
+
+extension thunder client
