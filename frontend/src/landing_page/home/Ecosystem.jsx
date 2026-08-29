@@ -33,10 +33,10 @@ function Ecosystem() {
           />
           <div className="mx-5">
             <a href="" className="ms-5 ps-5" style={{ textDecoration: "none" }}>
-              Explore our Products <i class="fa-solid fa-arrow-right"></i>
+              Explore our Products <i className="fa-solid fa-arrow-right"></i>
             </a>
             <a href="" className="ps-5" style={{ textDecoration: "none" }}>
-              Try Kite demo <i class="fa-solid fa-arrow-right"></i>
+              Try Kite demo <i className="fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </div>

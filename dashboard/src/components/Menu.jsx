@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {Link} from "react-router-dom"
+import './Menu.css';
 
 function Menu() {
     const [selectedMenu, setSelectedMenu] = useState(0); // dashboard selected
@@ -14,6 +15,10 @@ function Menu() {
 
     const menuClass = "menu";
     const activeMenuClass = "menu selected";
+    const Logout = () => {
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href = "http://localhost:5173/login";
+    };
 
     return ( 
         <div className="menu-container">
@@ -78,6 +83,13 @@ function Menu() {
                 <div className="profile" onClick={handleProfileClick}>
                     <div className="avatar">ZU</div>
                     <p className='username'>User ID</p>
+
+                    {isProfileDropDownOpen && (
+                        <div className="profile-dropdown">
+                            <p onClick={Logout}>Logout</p>
+                        </div>
+                    )}
+
                 </div>
             
             </div>
