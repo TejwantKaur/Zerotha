@@ -9,8 +9,39 @@ import {
 } from "@mui/icons-material";
 
 import { watchlist } from "../data/data";
+import { DoughnutChart } from "./DoughnutChart";
+
+const labels = watchlist.map((subarray) => subarray["name"]);
 
 function WatchList() {
+
+  const data = {
+    labels,
+    datasets: [ 
+      {
+        label: '# of Votes',
+        data: watchlist.map((stock) => stock.price),
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(255, 206, 86, 0.3)', // opacity: 0.5 more dark;
+          'rgba(75, 192, 192, 0.3)',
+          'rgba(153, 102, 255, 0.3)',
+          'rgba(255, 159, 64, 0.3)',
+        ], 
+        borderColor: [
+          'rgba(255, 99, 132, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(255, 206, 86, 0.3)',
+          'rgba(75, 192, 192, 0.3)',
+          'rgba(153, 102, 255, 0.3)',
+          'rgba(255, 159, 64, 0.3)',
+        ],
+        borderWidth: 0.5,
+      }
+    ]
+  }
+
   return (
     <div className="watchlist-container">
       <div className="search-container">
@@ -31,8 +62,9 @@ function WatchList() {
         })}
         {/* { watchlist.map ((stock, index) => {
                     return <p>{stock.name}</p>
-                })} */}
+            })} */}
       </ul>
+      <DoughnutChart data={data}/>
     </div>
   );
 }
@@ -83,7 +115,7 @@ const WatchListActions = ({ uid }) => {
           title="Buy (B)"
           placement="top"
           arrow
-          TransitionComponent={Grow}
+          transitioncomponent={Grow}
         >
           <button className="buy">Buy</button>
         </Tooltip>
@@ -92,7 +124,7 @@ const WatchListActions = ({ uid }) => {
           title="Sell (S)"
           placement="top"
           arrow
-          TransitionComponent={Grow}
+          transitioncomponent={Grow}
         >
           {" "}
           <button className="sell">Sell</button>
@@ -102,7 +134,7 @@ const WatchListActions = ({ uid }) => {
           title="Analytics (B)"
           placement="top"
           arrow
-          TransitionComponent={Grow}
+          transitioncomponent={Grow}
         >
           {" "}
           <button className="action">
@@ -110,7 +142,7 @@ const WatchListActions = ({ uid }) => {
           </button>
         </Tooltip>
 
-        <Tooltip title="More" placement="top" arrow TransitionComponent={Grow}>
+        <Tooltip title="More" placement="top" arrow transitioncomponent={Grow}>
           <button className="action">
             <MoreHoriz className="icon" />
           </button>

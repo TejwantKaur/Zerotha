@@ -1,1 +1,7 @@
 npm i axios
+
+npm install chart.js react-chartjs-2
+
+faker v install hojnda ede naal;
+jo ki used for dummy data;
+we dont need it; so i deleted from package.json; hai e ni :(

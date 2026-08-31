@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"
+import { VerticalGrapgh } from "./verticalGraph";
 // useState to store the data;
 
 // import { holdings } from "../data/data";
@@ -18,7 +19,7 @@ function Holdings() {
 
   useEffect(() => {
     axios
-        .get("http://localhost:3002/allHoldings")
+        .get("http://localhost:3000/allHoldings")
         .then((res) => {
             console.log("Holdings:", res.data);
             setAllHoldings(res.data);
@@ -27,6 +28,23 @@ function Holdings() {
             console.log("Error fetching holdings:", err);
         });
   }, []);
+
+  // x-label
+  // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  // create labels from our data allHoldings
+  const labels = allHoldings.map((subArray) => subArray["name"]); // data andr, subarray of every name;
+
+  const data = {
+    labels, 
+    datasets: [
+      {
+        label: 'Stock Price',
+        data: allHoldings.map((stock) => stock.price),
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+    ]
+
+  }
 
   return (
     <>
@@ -78,6 +96,7 @@ function Holdings() {
           <h5></h5>
         </div>
       </div>
+      <VerticalGrapgh data={data}/>
     </>
   );
 }
